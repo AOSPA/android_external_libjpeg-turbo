@@ -21,6 +21,14 @@ ifeq ($(strip $(TARGET_ARCH)),arm)
   endif
 endif
 
+ifeq ($(strip $(TARGET_ARCH)),arm64)
+  libjpeg_turbo_common_cflags += -DAVOID_CPUINFO_CHECK
+  ifneq ($(filter $(TARGET_CPU_VARIANT),cortex-a53),)
+    libjpeg_turbo_common_cflags += -DTARGET_IS_CORTEX_A53
+  endif
+endif
+
+
 libjpeg_turbo_common_src_files := \
     jcapimin.c jcapistd.c jccoefct.c jccolor.c jcdctmgr.c jchuff.c \
     jcinit.c jcmainct.c jcmarker.c jcmaster.c jcomapi.c jcparam.c \
