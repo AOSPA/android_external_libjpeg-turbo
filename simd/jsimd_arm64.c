@@ -35,7 +35,7 @@ static unsigned int simd_huffman = 1;
 static unsigned int simd_features = JSIMD_FASTLD3 | JSIMD_FASTST3 |
                                     JSIMD_FASTTBL;
 
-#if defined(__linux__) || defined(ANDROID) || defined(__ANDROID__)
+#if (defined(__linux__) || defined(ANDROID) || defined(__ANDROID__)) && !defined(AVOID_CPUINFO_CHECK)
 
 #define SOMEWHAT_SANE_PROC_CPUINFO_SIZE_LIMIT (1024 * 1024)
 
@@ -131,12 +131,20 @@ init_simd (void)
   simd_support = 0;
 
   simd_support |= JSIMD_ARM_NEON;
-#if defined(__linux__) || defined(ANDROID) || defined(__ANDROID__)
+#if (defined(__linux__) || defined(ANDROID) || defined(__ANDROID__)) && !defined(AVOID_CPUINFO_CHECK)
   while (!parse_proc_cpuinfo(bufsize)) {
     bufsize *= 2;
     if (bufsize > SOMEWHAT_SANE_PROC_CPUINFO_SIZE_LIMIT)
       break;
   }
+#elif defined(AVOID_CPUINFO_CHECK)
+  #if defined(TARGET_IS_CORTEX_A53)
+    /*
+    The Cortex-A53 has a slow tbl implementation.  We can gain a few
+    percent speedup by disabling the use of that instruction.
+    */
+    simd_features &= ~JSIMD_FASTTBL;
+  #endif
 #endif
 
   /* Force different settings through environment variables */
