@@ -26,6 +26,9 @@ ifeq ($(strip $(TARGET_ARCH)),arm64)
   ifneq ($(filter $(TARGET_CPU_VARIANT),cortex-a53),)
     libjpeg_turbo_common_cflags += -DTARGET_IS_CORTEX_A53
   endif
+  ifeq ($(strip $(TARGET_IS_CORTEX-A53)),true)
+    libjpeg_turbo_common_cflags += -DTARGET_IS_CORTEX_A53
+  endif
 endif
 
 
