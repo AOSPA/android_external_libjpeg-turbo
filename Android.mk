@@ -157,6 +157,35 @@ LOCAL_SDK_VERSION := 17
 LOCAL_MODULE := libjpeg_static_ndk
 include $(BUILD_STATIC_LIBRARY)
 
+# Definitions for TJBench
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := libturbojpeg
+
+LOCAL_WHOLE_STATIC_LIBRARIES := libjpeg_static
+
+LOCAL_LDFLAGS := -version-info 1:0:1 -no-undefined
+
+LOCAL_SRC_FILES += turbojpeg.c transupp.c jdatadst-tj.c jdatasrc-tj.c
+
+include $(BUILD_STATIC_LIBRARY)
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := tjbench
+
+LOCAL_MODULE_STEM_32 := tj32
+LOCAL_MODULE_STEM_64 := tj64
+
+LOCAL_MULTILIB := both
+
+LOCAL_WHOLE_STATIC_LIBRARIES := libturbojpeg
+
+LOCAL_SRC_FILES := tjbench.c tjutil.c
+
+include $(BUILD_EXECUTABLE)
+
 # Unset all created common variables
 libjpeg_turbo_common_arm_mode :=
 libjpeg_turbo_common_src_files :=
