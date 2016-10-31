@@ -10,6 +10,7 @@ libjpeg_turbo_common_arm_mode := arm
 
 libjpeg_turbo_common_cflags := -O3 -fstrict-aliasing
 libjpeg_turbo_common_cflags += -Wno-unused-parameter -Werror
+libjpeg_turbo_common_cflags += -DJDCT_DEFAULT=JDCT_IFAST
 
 # If we are certain that the ARM v7 device has NEON (and there is no need for
 # a runtime check), we can indicate that with a flag.
