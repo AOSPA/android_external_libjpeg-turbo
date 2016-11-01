@@ -183,7 +183,9 @@ LOCAL_MULTILIB := both
 
 LOCAL_WHOLE_STATIC_LIBRARIES := libturbojpeg
 
-LOCAL_SRC_FILES := tjbench.c tjutil.c
+LOCAL_CFLAGS += -DBMP_SUPPORTED -DPPM_SUPPORTED
+
+LOCAL_SRC_FILES := tjbench.c bmp.c tjutil.c rdbmp.c rdppm.c wrbmp.c wrppm.c
 
 include $(BUILD_EXECUTABLE)
 
