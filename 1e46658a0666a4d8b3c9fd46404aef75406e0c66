@@ -1,0 +1,9 @@
+Code-Review+2: Alex Naidis <alex.naidis@linux.com>
+Verified+1: Alex Naidis <alex.naidis@linux.com>
+Code-Review+2: Jake Weinstein <xboxlover360@gmail.com>
+Verified+1: Jake Weinstein <xboxlover360@gmail.com>
+Submitted-by: Alex Naidis <alex.naidis@linux.com>
+Submitted-at: Sat, 11 Feb 2017 18:34:58 +0000
+Reviewed-on: https://gerrit.aospa.co/1842
+Project: AOSPA/android_external_libjpeg-turbo
+Branch: refs/heads/nougat-mr1
