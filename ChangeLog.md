@@ -1,3 +1,15 @@
+1.5.2
+=====
+
+### Significant changes relative to 1.5.1:
+
+8. Fixed several memory leaks in the TurboJPEG API library that could occur
+if the library was built with certain compilers and optimization levels
+(known to occur with GCC 4.x and clang with `-O1` and higher but not with
+GCC 5.x or 6.x) and one of the underlying libjpeg API functions threw an error
+after a TurboJPEG API function allocated a local buffer.
+
+
 1.5.1
 =====
 
