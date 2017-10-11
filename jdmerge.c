@@ -582,6 +582,13 @@ jinit_merged_upsampler (j_decompress_ptr cinfo)
     (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_IMAGE,
                                 sizeof(my_upsampler));
   cinfo->upsample = (struct jpeg_upsampler *) upsample;
+
+  struct jpeg_color_deconverter * cconvert;
+  cconvert = (struct jpeg_color_deconverter *)
+    (*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_IMAGE,
+                                sizeof(struct jpeg_color_deconverter));
+  cinfo->cconvert = (struct jpeg_color_deconverter *) cconvert;
+
   upsample->pub.start_pass = start_pass_merged_upsample;
   upsample->pub.need_context_rows = FALSE;
 
