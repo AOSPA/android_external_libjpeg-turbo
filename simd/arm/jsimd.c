@@ -26,6 +26,7 @@
 #include "../jsimd.h"
 
 #include "jdsample-neon.h"
+#include "jidctint-neon.h"
 #include "jidctred-neon.h"
 
 #include <stdio.h>
