@@ -17,6 +17,7 @@
 
 #define JPEG_INTERNALS
 #include "../arm/jdsample-neon.h"
+#include "../arm/jidctint-neon.h"
 #include "../arm/jidctred-neon.h"
 
 #include <stdio.h>
